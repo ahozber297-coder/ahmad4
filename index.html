@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وەشەن میدیا - لینکەکانم</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            direction: rtl;
+            position: relative;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #00c8ff, #667eea, #764ba2, #00c8ff);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .particle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: rgba(0, 200, 255, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .container {
+            max-width: 480px;
+            width: 100%;
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 40px 30px;
+            box-shadow: 0 25px 80px rgba(0, 200, 255, 0.2);
+            text-align: center;
+            animation: containerFadeIn 1s ease;
+            position: relative;
+            z-index: 1;
+        }
+        @keyframes containerFadeIn {
+            from { opacity: 0; transform: translateY(50px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .profile {
+            margin-bottom: 35px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        /* کاریگەری درەوشانەوەی دەوری لۆگۆکە */
+        .profile::before {
+            content: '';
+            position: absolute;
+            top: 75px; /* نیوەی بەرزی وێنەکە */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 170px;
+            height: 170px;
+            background: conic-gradient(from 0deg, #00c8ff, #667eea, #764ba2, #00c8ff);
+            border-radius: 50%;
+            animation: rotate 4s linear infinite;
+            opacity: 0.5;
+            filter: blur(15px);
+            z-index: 1;
+        }
+
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .profile-image-container {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            animation: float 3s ease-in-out infinite;
+            background: #fff; /* سپی بۆ ئەوەی لۆگۆکە ڕوون بێت */
+        }
+
+        .profile-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 32px;
+            margin-bottom: 8px;
+            font-weight: 700;
+            text-shadow: 0 0 20px rgba(0, 200, 255, 0.5);
+        }
+        .subtitle {
+            color: #00c8ff;
+            font-size: 16px;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+        .warning-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(251, 191, 36, 0.15));
+            border-right: 3px solid #f59e0b;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            color: #fbbf24;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .link-button {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            padding: 20px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        .link-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #00c8ff;
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 200, 255, 0.3);
+        }
+        .link-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            color: white;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+        .link-text { flex: 1; text-align: right; z-index: 1; }
+        .link-title { font-size: 17px; font-weight: 700; color: #ffffff; }
+        .link-subtitle { font-size: 13px; color: #a0a0a0; }
+        .link-arrow { font-size: 20px; color: #666; transition: 0.4s; }
+
+        .instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .facebook { background: #1877f2; }
+        .tiktok { background: linear-gradient(135deg, #00f2ea, #ff0050); }
+        .whatsapp { background: #25D366; }
+        .youtube { background: #FF0000; }
+
+        .info-button {
+            position: fixed; top: 20px; left: 20px; width: 50px; height: 50px;
+            background: linear-gradient(135deg, #00c8ff, #667eea);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 1000; box-shadow: 0 5px 20px rgba(0, 200, 255, 0.4);
+        }
+        .modal {
+            display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px); z-index: 2000; justify-content: center; align-items: center;
+        }
+        .modal.active { display: flex; }
+        .modal-content {
+            background: #1a1a1a; border-radius: 25px; padding: 40px 35px; max-width: 600px;
+            width: 90%; max-height: 80vh; overflow-y: auto; border: 1px solid rgba(0, 200, 255, 0.3); color: white;
+        }
+        .close-button {
+            background: rgba(255, 255, 255, 0.1); border: none; border-radius: 50%;
+            width: 40px; height: 40px; color: white; cursor: pointer; float: left;
+        }
+        @keyframes floatParticle {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="info-button" onclick="openModal()">
+        <i class="fas fa-info"></i>
+    </div>
+
+    <div class="modal" id="infoModal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="close-button" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            <h2 style="color: #00c8ff; margin-bottom: 20px;">دەربارەی وەشەن میدیا</h2>
+            <p style="color: #fbbf24; font-weight: bold; font-size: 18px; margin-bottom: 15px;">خاوەنی ئەم کەناڵە سەرهەنگ میرانبەگ</p>
+            <p>وەشەن میدیا لە 6-ی تشرینی دووەم 2023 دامەزراوە.</p>
+            <p style="margin-top: 15px;">ئەم میدیایە وەک کەناڵێکی نا فەرمی کار دەکات، بەڵام کەناڵی تەلەفزیۆنی نییە، مایکرۆفۆن و کارمەندی هەەیە، بەڵام لە جیاتی کەناڵی تەلەفزیۆنی، پەڕەیەکی گەورەی فەرمی لە تەواوی تۆڕە کۆمەڵایەتیەکان هەیە و چالاکیەکانی لەوێ بڵاو دەکاتەوە.</p>
+            <h3 style="color: #00c8ff; margin-top: 25px;">ئەندامانی تیم</h3>
+            <ul style="list-style: none; padding-top: 10px;">
+                <li>✓ ئەحمەد زوبێر: کامیرامان</li>
+                <li>✓ ئەژین حەسەن: مۆنتاژکار</li>
+                <li>✓ میدیا ئەحمەد: پەیامنێر</li>
+                <li>✓ ئامینە کاوە: بەشی دەنگ و خوێندنەوە</li>
+                <li>✓ لینا تاهیر: هەواڵساز</li>
+                <li>✓ ئەژیر موحسین: مۆنتاژ کار و پەیامنێر</li>
+                <li>✓ سەرۆک پشتیوان: پەیامنێر</li>
+                <li>✓ شەرمین ڕەواندزی: پێشکەشکەر</li>
+                <li>✓ خەلیل مهاجیر: پەیامنێر</li>
+                <li>✓ ئارام عیماد: پەیامنێر</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="profile">
+            <div class="profile-image-container">
+                <img src="image.png" alt="وەشەن میدیا">
+            </div>
+            <h1>وەشەن میدیا</h1>
+            <p class="subtitle">تۆڕی سۆشیال میدیای (وەشەن میدیا)</p>
+        </div>
+
+        <div class="warning-box">
+            <i class="fas fa-shield-alt"></i>
+            <span>وەشەن میدیا تەنها لەم ئەپانە بەرپرسە</span>
+        </div>
+
+        <div class="links">
+            <a href="https://www.tiktok.com/@washanmedia" class="link-button" target="_blank">
+                <div class="link-icon tiktok"><i class="fab fa-tiktok"></i></div>
+                <div class="link-text">
+                    <div class="link-title">TikTok</div>
+                    <div class="link-subtitle">@washanmedia</div>
+                </div>
+                <div class="link-arrow"><i class="fas fa-arrow-left"></i></div>
+            </a>
+            <a href="https://www.facebook.com/share/18dSJLZmDo/" class="link-button" target="_blank">
+                <div class="link-icon facebook"><i class="fab fa-facebook-f"></i></div>
+                <div class="link-text">
+                    <div class="link-title">Facebook</div>
+                    <div class="link-subtitle">پەیجی فەیسبووک</div>
+                </div>
+                <div class="link-arrow"><i class="fas fa-arrow-left"></i></div>
+            </a>
+            <a href="https://www.instagram.com/washan_media" class="link-button" target="_blank">
+                <div class="link-icon instagram"><i class="fab fa-instagram"></i></div>
+                <div class="link-text">
+                    <div class="link-title">Instagram</div>
+                    <div class="link-subtitle">@washan_media</div>
+                </div>
+                <div class="link-arrow"><i class="fas fa-arrow-left"></i></div>
+            </a>
+            <a href="https://wa.me/9647515372521" class="link-button" target="_blank">
+                <div class="link-icon whatsapp"><i class="fab fa-whatsapp"></i></div>
+                <div class="link-text">
+                    <div class="link-title">WhatsApp</div>
+                    <div class="link-subtitle">پەیوەندی ڕاستەوخۆ</div>
+                </div>
+                <div class="link-arrow"><i class="fas fa-arrow-left"></i></div>
+            </a>
+            <a href="https://youtube.com/@washanmedia1" class="link-button" target="_blank">
+                <div class="link-icon youtube"><i class="fab fa-youtube"></i></div>
+                <div class="link-text">
+                    <div class="link-title">YouTube</div>
+                    <div class="link-subtitle">@washanmedia1</div>
+                </div>
+                <div class="link-arrow"><i class="fas fa-arrow-left"></i></div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function openModal() { document.getElementById('infoModal').classList.add('active'); }
+        function closeModal(event) { if (!event || event.target.id === 'infoModal' || event.target.closest('.close-button')) { document.getElementById('infoModal').classList.remove('active'); } }
+        
+        for(let i = 0; i < 30; i++) {
+            let particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animation = `floatParticle ${5 + Math.random() * 10}s linear infinite`;
+            document.body.appendChild(particle);
+        }
+    </script>
+</body>
+</html>
